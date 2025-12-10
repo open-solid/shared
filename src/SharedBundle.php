@@ -2,7 +2,6 @@
 
 namespace OpenSolid\Shared;
 
-use Doctrine\ORM\Events;
 use OpenSolid\Shared\Infrastructure\Symfony\DependencyInjection\Compiler\RegisterGenericDbalTypesPass;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -15,9 +14,7 @@ class SharedBundle extends AbstractBundle
 
     public function build(ContainerBuilder $container): void
     {
-        if (class_exists(Events::class)) {
-            $container->addCompilerPass(new RegisterGenericDbalTypesPass($container));
-        }
+        $container->addCompilerPass(new RegisterGenericDbalTypesPass($container));
     }
 
     public function configure(DefinitionConfigurator $definition): void
@@ -28,9 +25,5 @@ class SharedBundle extends AbstractBundle
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $container->import('../config/services.php');
-
-        if (class_exists(Events::class)) {
-            $container->import('../config/doctrine.php');
-        }
     }
 }
