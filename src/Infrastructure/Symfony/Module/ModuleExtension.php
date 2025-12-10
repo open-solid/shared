@@ -37,6 +37,11 @@ abstract class ModuleExtension extends AbstractExtension
         }
     }
 
+    public function getAlias(): string
+    {
+        return 'app_'.parent::getAlias();
+    }
+
     protected function configureDoctrineMapping(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         if (!\is_dir($this->path.'/Domain/Model')) {
