@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenSolid\Shared\Tests;
 
 use OpenSolid\Shared\SharedBundle;
@@ -24,6 +26,8 @@ class SharedBundleConfigurationTest extends TestCase
         $this->assertArrayHasKey('mapping', $config['doctrine']['orm']);
         $this->assertSame('xml', $config['doctrine']['orm']['mapping']['type']);
         $this->assertSame('/Infrastructure/Resources/config/doctrine/mapping/', $config['doctrine']['orm']['mapping']['relative_path']);
+
+
     }
 
     #[Test]
@@ -34,7 +38,7 @@ class SharedBundleConfigurationTest extends TestCase
 
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, [
-            'opensolid_shared' => [
+            'opensolid' => [
                 'doctrine' => [
                     'orm' => [
                         'mapping' => [
@@ -42,6 +46,9 @@ class SharedBundleConfigurationTest extends TestCase
                             'relative_path' => '/Domain/Model/',
                         ],
                     ],
+                ],
+                'bus' => [
+                    'strategy' => 'native',
                 ],
             ],
         ]);
@@ -54,6 +61,9 @@ class SharedBundleConfigurationTest extends TestCase
                         'relative_path' => '/Domain/Model/',
                     ],
                 ],
+            ],
+            'bus' => [
+                'strategy' => 'native',
             ],
         ], $config);
     }

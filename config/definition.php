@@ -1,10 +1,8 @@
 <?php
 
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
+use Symfony\Component\Messenger\MessageBusInterface;
 
-/**
- * @link https://symfony.com/doc/current/bundles/best_practices.html#configuration
- */
 return static function (DefinitionConfigurator $definition): void {
     $definition
         ->rootNode()
@@ -24,6 +22,15 @@ return static function (DefinitionConfigurator $definition): void {
                                     ->end()
                                 ->end()
                             ->end()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('bus')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->enumNode('strategy')
+                            ->defaultValue(interface_exists(MessageBusInterface::class) ? 'symfony' : 'native')
+                            ->values(['symfony', 'native', 'custom'])
                         ->end()
                     ->end()
                 ->end()

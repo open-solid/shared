@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenSolid\Shared\Infrastructure\Symfony\Module;
 
 use Symfony\Component\Config\Definition\Processor;
