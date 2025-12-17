@@ -21,13 +21,26 @@ class SharedBundleConfigurationTest extends TestCase
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, []);
 
-        $this->assertArrayHasKey('doctrine', $config);
-        $this->assertArrayHasKey('orm', $config['doctrine']);
-        $this->assertArrayHasKey('mapping', $config['doctrine']['orm']);
-        $this->assertSame('xml', $config['doctrine']['orm']['mapping']['type']);
-        $this->assertSame('/Infrastructure/Resources/config/doctrine/mapping/', $config['doctrine']['orm']['mapping']['relative_path']);
-
-
+        $this->assertSame([
+            'doctrine' => [
+                'orm' => [
+                    'mapping' => [
+                        'type' => 'xml',
+                        'relative_path' => '/Infrastructure/Resources/config/doctrine/mapping/',
+                    ],
+                ],
+            ],
+            'api_platform' => [
+                'resources' => [
+                    'mapping' => [
+                        'relative_path' => '/Infrastructure/Resources/config/api_platform',
+                    ],
+                ],
+            ],
+            'bus' => [
+                'strategy' => 'symfony',
+            ],
+        ], $config);
     }
 
     #[Test]
@@ -47,6 +60,13 @@ class SharedBundleConfigurationTest extends TestCase
                         ],
                     ],
                 ],
+                'api_platform' => [
+                    'resources' => [
+                        'mapping' => [
+                            'relative_path' => '/path/to/api_platform',
+                        ],
+                    ],
+                ],
                 'bus' => [
                     'strategy' => 'native',
                 ],
@@ -59,6 +79,13 @@ class SharedBundleConfigurationTest extends TestCase
                     'mapping' => [
                         'type' => 'attribute',
                         'relative_path' => '/Domain/Model/',
+                    ],
+                ],
+            ],
+            'api_platform' => [
+                'resources' => [
+                    'mapping' => [
+                        'relative_path' => '/path/to/api_platform',
                     ],
                 ],
             ],

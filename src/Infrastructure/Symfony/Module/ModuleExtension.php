@@ -25,7 +25,10 @@ abstract class ModuleExtension extends AbstractExtension
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $this->configureDoctrineMapping($container, $builder);
+        $config = $this->getConfig($builder);
+
+        $this->configureDoctrineMapping($container, $builder, $config);
+        $this->configureApiPlatformResources($container, $builder, $config);
 
         if (\is_dir($this->path.'/Infrastructure/Resources/config/packages')) {
             $container->import($this->path.'/Infrastructure/Resources/config/packages/*.yaml');
@@ -44,15 +47,11 @@ abstract class ModuleExtension extends AbstractExtension
         return 'app_'.parent::getAlias();
     }
 
-    protected function configureDoctrineMapping(ContainerConfigurator $container, ContainerBuilder $builder): void
+    protected function configureDoctrineMapping(ContainerConfigurator $container, ContainerBuilder $builder, array $config): void
     {
-        if (!\is_dir($this->path.'/Domain/Model')) {
+        if (!$builder->hasExtension('doctrine') || !\is_dir($this->path.'/Domain/Model')) {
             return;
         }
-
-        /** @var AbstractExtension $extension */
-        $extension = $builder->getExtension('opensolid');
-        $config = new Processor()->processConfiguration($extension->getConfiguration([], $builder), $builder->getExtensionConfig('opensolid_shared'));
 
         if (!\is_dir($dir = $this->path.$config['doctrine']['orm']['mapping']['relative_path'])) {
             mkdir($dir, 0750, true);
@@ -71,5 +70,30 @@ abstract class ModuleExtension extends AbstractExtension
                 ],
             ],
         ], true);
+    }
+
+    private function configureApiPlatformResources(ContainerConfigurator $container, ContainerBuilder $builder, array $config): void
+    {
+        if (!$builder->hasExtension('api_platform')) {
+            return;
+        }
+
+        if (!\is_dir($dir = $this->path.$config['api_platform']['resources']['mapping']['relative_path'])) {
+            mkdir($dir, 0750, true);
+        }
+
+        $container->extension('api_platform', [
+            'mappings' => [
+                'paths' => [$dir],
+            ],
+        ], true);
+    }
+
+    private function getConfig(ContainerBuilder $builder): array
+    {
+        /** @var AbstractExtension $extension */
+        $extension = $builder->getExtension('opensolid');
+
+        return new Processor()->processConfiguration($extension->getConfiguration([], $builder), $builder->getExtensionConfig('opensolid'));
     }
 }
