@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Domain\Event\Store;
+namespace OpenSolid\Core\Domain\Event\Store;
 
-use OpenSolid\Shared\Domain\Event\DomainEvent;
+use OpenSolid\Core\Domain\Event\DomainEvent;
 
 trait InMemoryEventStore
 {

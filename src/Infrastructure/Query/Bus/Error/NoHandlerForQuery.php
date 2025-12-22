@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Query\Bus\Error;
+namespace OpenSolid\Core\Infrastructure\Query\Bus\Error;
 
-use OpenSolid\Shared\Application\Query\Query;
+use OpenSolid\Core\Application\Query\Query;
 
 final class NoHandlerForQuery extends \LogicException
 {

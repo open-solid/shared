@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Symfony\DependencyInjection\Compiler;
+namespace OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler;
 
-use OpenSolid\Shared\Infrastructure\Symfony\Module\ModuleExtension;
+use OpenSolid\Core\Infrastructure\Symfony\Module\ModuleExtension;
 use Symfony\Component\DependencyInjection\Compiler\MergeExtensionConfigurationPass as BaseMergeExtensionConfigurationPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

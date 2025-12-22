@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Persistence\Doctrine\ORM\Mapping;
+namespace OpenSolid\Core\Infrastructure\Persistence\Doctrine\ORM\Mapping;
 
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 

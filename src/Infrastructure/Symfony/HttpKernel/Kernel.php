@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Symfony\HttpKernel;
+namespace OpenSolid\Core\Infrastructure\Symfony\HttpKernel;
 
-use OpenSolid\Shared\Infrastructure\Symfony\DependencyInjection\Compiler\MergeExtensionConfigurationPass;
+use OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler\MergeExtensionConfigurationPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 

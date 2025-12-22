@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Application\Query;
+namespace OpenSolid\Core\Application\Query;
 
 use OpenSolid\Bus\Envelope\Message;
 

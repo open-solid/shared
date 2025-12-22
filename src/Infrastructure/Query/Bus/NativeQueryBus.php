@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Query\Bus;
+namespace OpenSolid\Core\Infrastructure\Query\Bus;
 
 use OpenSolid\Bus\Error\NoHandlerForMessage;
 use OpenSolid\Bus\MessageBus;
-use OpenSolid\Shared\Application\Query\Query;
-use OpenSolid\Shared\Application\Query\QueryBus;
-use OpenSolid\Shared\Infrastructure\Query\Bus\Error\NoHandlerForQuery;
+use OpenSolid\Core\Application\Query\Query;
+use OpenSolid\Core\Application\Query\QueryBus;
+use OpenSolid\Core\Infrastructure\Query\Bus\Error\NoHandlerForQuery;
 
 readonly class NativeQueryBus implements QueryBus
 {

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Tests;
+namespace OpenSolid\Core\Tests;
 
-use OpenSolid\Shared\SharedBundle;
+use OpenSolid\Core\CoreBundle;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-class SharedBundleConfigurationTest extends TestCase
+class CoreBundleConfigurationTest extends TestCase
 {
     #[Test]
     public function defaultConfigurationIsProperlySet(): void
     {
-        $bundle = new SharedBundle();
+        $bundle = new CoreBundle();
         $configuration = $bundle->getContainerExtension()->getConfiguration([], new ContainerBuilder());
 
         $processor = new Processor();
@@ -46,7 +46,7 @@ class SharedBundleConfigurationTest extends TestCase
     #[Test]
     public function customConfigurationOverridesDefaults(): void
     {
-        $bundle = new SharedBundle();
+        $bundle = new CoreBundle();
         $configuration = $bundle->getContainerExtension()->getConfiguration([], new ContainerBuilder());
 
         $processor = new Processor();

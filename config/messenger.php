@@ -1,13 +1,13 @@
 <?php
 
 use Doctrine\ORM\EntityManagerInterface;
-use OpenSolid\Shared\Application\Command\CommandBus;
-use OpenSolid\Shared\Application\Query\QueryBus;
-use OpenSolid\Shared\Domain\Event\Bus\EventBus;
-use OpenSolid\Shared\Infrastructure\Command\Bus\SymfonyCommandBus;
-use OpenSolid\Shared\Infrastructure\Event\Bus\Middleware\SymfonyEventPublisherMiddleware;
-use OpenSolid\Shared\Infrastructure\Event\Bus\SymfonyEventBus;
-use OpenSolid\Shared\Infrastructure\Query\Bus\SymfonyQueryBus;
+use OpenSolid\Core\Application\Command\CommandBus;
+use OpenSolid\Core\Application\Query\QueryBus;
+use OpenSolid\Core\Domain\Event\Bus\EventBus;
+use OpenSolid\Core\Infrastructure\Command\Bus\SymfonyCommandBus;
+use OpenSolid\Core\Infrastructure\Event\Bus\Middleware\SymfonyEventPublisherMiddleware;
+use OpenSolid\Core\Infrastructure\Event\Bus\SymfonyEventBus;
+use OpenSolid\Core\Infrastructure\Query\Bus\SymfonyQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;

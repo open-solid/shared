@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Command\Bus;
+namespace OpenSolid\Core\Infrastructure\Command\Bus;
 
 use Symfony\Component\Messenger\Exception\LogicException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;

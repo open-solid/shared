@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Event\Bus\Middleware;
+namespace OpenSolid\Core\Infrastructure\Event\Bus\Middleware;
 
 use OpenSolid\Bus\Envelope\Envelope;
 use OpenSolid\Bus\FlushableMessageBus;

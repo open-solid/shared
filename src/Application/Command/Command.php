@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Application\Command;
+namespace OpenSolid\Core\Application\Command;
 
 use OpenSolid\Bus\Envelope\Message;
 

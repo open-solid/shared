@@ -1,7 +1,7 @@
 <?php
 
 use Doctrine\ORM\Events;
-use OpenSolid\Shared\Infrastructure\Persistence\Doctrine\ORM\Mapping\AutoMapGenericTypes;
+use OpenSolid\Core\Infrastructure\Persistence\Doctrine\ORM\Mapping\AutoMapGenericTypes;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
 return static function (ContainerConfigurator $container): void {

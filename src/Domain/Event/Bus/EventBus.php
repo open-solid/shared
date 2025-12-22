@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Domain\Event\Bus;
+namespace OpenSolid\Core\Domain\Event\Bus;
 
-use OpenSolid\Shared\Domain\Event\DomainEvent;
+use OpenSolid\Core\Domain\Event\DomainEvent;
 
 /**
  * A message bus responsible for publishing domain events.

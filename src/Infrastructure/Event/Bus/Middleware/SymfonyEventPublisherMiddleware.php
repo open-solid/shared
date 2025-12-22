@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Event\Bus\Middleware;
+namespace OpenSolid\Core\Infrastructure\Event\Bus\Middleware;
 
 use Doctrine\ORM\EntityManagerInterface;
-use OpenSolid\Shared\Domain\Event\Bus\EventBus;
+use OpenSolid\Core\Domain\Event\Bus\EventBus;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;

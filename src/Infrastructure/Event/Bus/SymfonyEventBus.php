@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Event\Bus;
+namespace OpenSolid\Core\Infrastructure\Event\Bus;
 
-use OpenSolid\Shared\Domain\Event\Bus\EventBus;
-use OpenSolid\Shared\Domain\Event\DomainEvent;
+use OpenSolid\Core\Domain\Event\Bus\EventBus;
+use OpenSolid\Core\Domain\Event\DomainEvent;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 final readonly class SymfonyEventBus implements EventBus

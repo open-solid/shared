@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Query\Bus;
+namespace OpenSolid\Core\Infrastructure\Query\Bus;
 
-use OpenSolid\Shared\Application\Query\Query;
-use OpenSolid\Shared\Application\Query\QueryBus;
-use OpenSolid\Shared\Infrastructure\Query\Bus\Error\NoHandlerForQuery;
+use OpenSolid\Core\Application\Query\Query;
+use OpenSolid\Core\Application\Query\QueryBus;
+use OpenSolid\Core\Infrastructure\Query\Bus\Error\NoHandlerForQuery;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\HandleTrait;

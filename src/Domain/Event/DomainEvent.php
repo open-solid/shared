@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Domain\Event;
+namespace OpenSolid\Core\Domain\Event;
 
 use OpenSolid\Bus\Envelope\Message;
 use Symfony\Component\Uid\Uuid;

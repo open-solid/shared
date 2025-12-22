@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Command\Bus;
+namespace OpenSolid\Core\Infrastructure\Command\Bus;
 
 use OpenSolid\Bus\Error\NoHandlerForMessage;
 use OpenSolid\Bus\MessageBus;
-use OpenSolid\Shared\Application\Command\Command;
-use OpenSolid\Shared\Application\Command\CommandBus;
-use OpenSolid\Shared\Infrastructure\Command\Bus\Error\NoHandlerForCommand;
+use OpenSolid\Core\Application\Command\Command;
+use OpenSolid\Core\Application\Command\CommandBus;
+use OpenSolid\Core\Infrastructure\Command\Bus\Error\NoHandlerForCommand;
 
 readonly class NativeCommandBus implements CommandBus
 {

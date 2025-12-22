@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Domain\Error\Store;
+namespace OpenSolid\Core\Domain\Error\Store;
 
-use OpenSolid\Shared\Domain\Error\DomainError;
+use OpenSolid\Core\Domain\Error\DomainError;
 
 trait InMemoryErrorStore
 {

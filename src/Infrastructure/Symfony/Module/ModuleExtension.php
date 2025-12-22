@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Symfony\Module;
+namespace OpenSolid\Core\Infrastructure\Symfony\Module;
 
 use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

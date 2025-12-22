@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Command\Bus;
+namespace OpenSolid\Core\Infrastructure\Command\Bus;
 
-use OpenSolid\Shared\Application\Command\Command;
-use OpenSolid\Shared\Application\Command\CommandBus;
-use OpenSolid\Shared\Infrastructure\Command\Bus\Error\NoHandlerForCommand;
+use OpenSolid\Core\Application\Command\Command;
+use OpenSolid\Core\Application\Command\CommandBus;
+use OpenSolid\Core\Infrastructure\Command\Bus\Error\NoHandlerForCommand;
 use Symfony\Component\Messenger\Exception\HandlerFailedException;
 use Symfony\Component\Messenger\Exception\NoHandlerForMessageException;
 use Symfony\Component\Messenger\MessageBusInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Event\Subscriber\Attribute;
+namespace OpenSolid\Core\Infrastructure\Event\Subscriber\Attribute;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 readonly class AsDomainEventSubscriber

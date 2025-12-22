@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Symfony\DependencyInjection\Compiler;
+namespace OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler;
 
 use Doctrine\DBAL\Types\Type;
-use OpenSolid\Shared\Infrastructure\Persistence\Doctrine\DBAL\Attribute\AsGenericType;
-use OpenSolid\Shared\Infrastructure\Persistence\Doctrine\ORM\Mapping\AutoMapGenericTypes;
+use OpenSolid\Core\Infrastructure\Persistence\Doctrine\DBAL\Attribute\AsGenericType;
+use OpenSolid\Core\Infrastructure\Persistence\Doctrine\ORM\Mapping\AutoMapGenericTypes;
 use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

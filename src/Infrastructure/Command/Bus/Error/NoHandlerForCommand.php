@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Command\Bus\Error;
+namespace OpenSolid\Core\Infrastructure\Command\Bus\Error;
 
-use OpenSolid\Shared\Application\Command\Command;
+use OpenSolid\Core\Application\Command\Command;
 
 final class NoHandlerForCommand extends \LogicException
 {

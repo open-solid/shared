@@ -1,8 +1,8 @@
 <?php
 
-use OpenSolid\Shared\Application\Command\Command;
-use OpenSolid\Shared\Application\Query\Query;
-use OpenSolid\Shared\Domain\Event\DomainEvent;
+use OpenSolid\Core\Application\Command\Command;
+use OpenSolid\Core\Application\Query\Query;
+use OpenSolid\Core\Domain\Event\DomainEvent;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 return static function (ContainerBuilder $container) {

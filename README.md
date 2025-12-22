@@ -1,4 +1,4 @@
-# Shared
+# Core
 
 Building Blocks for Modular Architecture with Symfony.
 
@@ -13,7 +13,7 @@ of the Composer documentation.
 Open a command console, enter your project directory and execute:
 
 ```console
-$ composer require open-solid/shared
+$ composer require open-solid/core
 ```
 
 ## Features

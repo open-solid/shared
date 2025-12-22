@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Domain\Error;
+namespace OpenSolid\Core\Domain\Error;
 
 class InvariantViolation extends DomainError
 {

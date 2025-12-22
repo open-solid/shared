@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared\Infrastructure\Event\Bus;
+namespace OpenSolid\Core\Infrastructure\Event\Bus;
 
 use OpenSolid\Bus\FlushableMessageBus;
 use OpenSolid\Bus\LazyMessageBus;
-use OpenSolid\Shared\Domain\Event\Bus\EventBus;
-use OpenSolid\Shared\Domain\Event\DomainEvent;
+use OpenSolid\Core\Domain\Event\Bus\EventBus;
+use OpenSolid\Core\Domain\Event\DomainEvent;
 
 final readonly class NativeEventBus implements EventBus, FlushableMessageBus
 {

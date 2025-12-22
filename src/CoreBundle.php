@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace OpenSolid\Shared;
+namespace OpenSolid\Core;
 
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\HandlingMiddlewarePass;
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
-use OpenSolid\Shared\Application\Command\Attribute\AsCommandHandler;
-use OpenSolid\Shared\Application\Query\Attribute\AsQueryHandler;
-use OpenSolid\Shared\Infrastructure\Event\Subscriber\Attribute\AsDomainEventSubscriber;
-use OpenSolid\Shared\Infrastructure\Symfony\DependencyInjection\Compiler\RegisterGenericDbalTypesPass;
+use OpenSolid\Core\Application\Command\Attribute\AsCommandHandler;
+use OpenSolid\Core\Application\Query\Attribute\AsQueryHandler;
+use OpenSolid\Core\Infrastructure\Event\Subscriber\Attribute\AsDomainEventSubscriber;
+use OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler\RegisterGenericDbalTypesPass;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class SharedBundle extends AbstractBundle
+class CoreBundle extends AbstractBundle
 {
     protected string $extensionAlias = 'opensolid';
 
