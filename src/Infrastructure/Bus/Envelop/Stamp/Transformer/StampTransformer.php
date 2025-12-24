@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OpenSolid\Core\Infrastructure\Bus\Envelop\Stamp\Transformer;
 
 use OpenSolid\Bus\Envelope\Stamp\Stamp;
