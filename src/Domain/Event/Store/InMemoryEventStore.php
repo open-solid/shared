@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace OpenSolid\Core\Domain\Event\Store;
 
-use OpenSolid\Core\Domain\Event\DomainEvent;
+use OpenSolid\Core\Domain\Event\Message\DomainEvent;
 
 trait InMemoryEventStore
 {

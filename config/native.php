@@ -1,21 +1,20 @@
 <?php
 
+use Doctrine\ORM\EntityManagerInterface;
 use OpenSolid\Bus\Bridge\Doctrine\Middleware\DoctrineTransactionMiddleware;
 use OpenSolid\Bus\Handler\HandlersCountPolicy;
 use OpenSolid\Bus\Middleware\HandlingMiddleware;
 use OpenSolid\Bus\Middleware\LoggingMiddleware;
 use OpenSolid\Bus\NativeLazyMessageBus;
 use OpenSolid\Bus\NativeMessageBus;
-use Doctrine\ORM\EntityManagerInterface;
-use OpenSolid\Core\Application\Command\CommandBus;
-use OpenSolid\Core\Application\Query\QueryBus;
+use OpenSolid\Core\Application\Command\Bus\CommandBus;
+use OpenSolid\Core\Application\Query\Bus\QueryBus;
 use OpenSolid\Core\Domain\Event\Bus\EventBus;
-use OpenSolid\Core\Infrastructure\Command\Bus\NativeCommandBus;
-use OpenSolid\Core\Infrastructure\Event\Bus\Middleware\NativeEventPublisherMiddlewareBus;
-use OpenSolid\Core\Infrastructure\Event\Bus\NativeEventBus;
-use OpenSolid\Core\Infrastructure\Query\Bus\NativeQueryBus;
+use OpenSolid\Core\Infrastructure\Bus\Command\NativeCommandBus;
+use OpenSolid\Core\Infrastructure\Bus\Event\Middleware\NativeEventPublisherMiddlewareBus;
+use OpenSolid\Core\Infrastructure\Bus\Event\NativeEventBus;
+use OpenSolid\Core\Infrastructure\Bus\Query\NativeQueryBus;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-
 use function Symfony\Component\DependencyInjection\Loader\Configurator\abstract_arg;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 use function Symfony\Component\DependencyInjection\Loader\Configurator\tagged_iterator;

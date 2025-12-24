@@ -6,9 +6,10 @@ namespace OpenSolid\Core;
 
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\CompilerPass\HandlingMiddlewarePass;
 use OpenSolid\Bus\Bridge\Symfony\DependencyInjection\Configurator\MessageHandlerConfigurator;
-use OpenSolid\Core\Application\Command\Attribute\AsCommandHandler;
-use OpenSolid\Core\Application\Query\Attribute\AsQueryHandler;
-use OpenSolid\Core\Infrastructure\Event\Subscriber\Attribute\AsDomainEventSubscriber;
+use OpenSolid\Core\Application\Command\Handler\Attribute\AsCommandHandler;
+use OpenSolid\Core\Application\Query\Handler\Attribute\AsQueryHandler;
+use OpenSolid\Core\Infrastructure\Bus\Envelop\Stamp\Transformer\StampTransformer;
+use OpenSolid\Core\Infrastructure\Bus\Event\Subscriber\Attribute\AsDomainEventSubscriber;
 use OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler\RegisterGenericDbalTypesPass;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -54,6 +55,9 @@ class CoreBundle extends AbstractBundle
             if (!interface_exists(MessageBusInterface::class)) {
                 throw new \LogicException('The "symfony" strategy requires symfony/messenger package.');
             }
+
+            $builder->registerForAutoconfiguration(StampTransformer::class)
+                ->addTag('envelope.stamp_transformer');
 
             MessageHandlerConfigurator::configure($builder, AsCommandHandler::class, 'messenger.message_handler', ['bus' => 'command.bus']);
             MessageHandlerConfigurator::configure($builder, AsQueryHandler::class, 'messenger.message_handler', ['bus' => 'query.bus']);
