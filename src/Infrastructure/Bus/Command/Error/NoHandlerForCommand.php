@@ -8,6 +8,9 @@ use OpenSolid\Core\Application\Command\Message\Command;
 
 final class NoHandlerForCommand extends \LogicException
 {
+    /**
+     * @param Command<mixed> $command
+     */
     public static function create(Command $command, ?\Throwable $previous = null, int $code = 0): self
     {
         return new self(sprintf('No handler for command of type "%s".', get_class($command)), $code, $previous);

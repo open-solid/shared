@@ -11,7 +11,7 @@ final class InvalidStateTransition extends InvariantViolation
      */
     public static function transition(\BackedEnum $from, \BackedEnum $to, array $allowed): self
     {
-        $allowed = array_map(static fn (\BackedEnum $enum): string => $enum->value, $allowed);
+        $allowed = array_map(static fn (\BackedEnum $enum): string => (string) $enum->value, $allowed);
 
         $hint = [] === $allowed
             ? sprintf('State "%s" is terminal and cannot transition to any other state.', $from->value)

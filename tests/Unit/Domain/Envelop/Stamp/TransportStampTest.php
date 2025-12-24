@@ -15,9 +15,7 @@ class TransportStampTest extends TestCase
     {
         $stamp = new TransportStamp('async');
 
-        $this->assertIsArray($stamp->names);
-        $this->assertCount(1, $stamp->names);
-        $this->assertSame('async', $stamp->names[0]);
+        $this->assertSame(['async'], $stamp->names);
     }
 
     #[Test]

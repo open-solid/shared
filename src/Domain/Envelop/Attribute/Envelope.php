@@ -19,6 +19,10 @@ final readonly class Envelope
      */
     public function __construct(array|Stamp $stamps)
     {
+        if ($stamps instanceof Stamp) {
+            $stamps = [$stamps];
+        }
+
         $grouped = [];
         foreach ($stamps as $stamp) {
             $grouped[$stamp::class][] = $stamp;

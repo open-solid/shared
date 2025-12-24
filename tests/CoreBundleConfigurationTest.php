@@ -16,7 +16,10 @@ class CoreBundleConfigurationTest extends TestCase
     public function defaultConfigurationIsProperlySet(): void
     {
         $bundle = new CoreBundle();
-        $configuration = $bundle->getContainerExtension()->getConfiguration([], new ContainerBuilder());
+        $extension = $bundle->getContainerExtension();
+        $this->assertNotNull($extension);
+        $configuration = $extension->getConfiguration([], new ContainerBuilder());
+        $this->assertNotNull($configuration);
 
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, []);
@@ -47,7 +50,10 @@ class CoreBundleConfigurationTest extends TestCase
     public function customConfigurationOverridesDefaults(): void
     {
         $bundle = new CoreBundle();
-        $configuration = $bundle->getContainerExtension()->getConfiguration([], new ContainerBuilder());
+        $extension = $bundle->getContainerExtension();
+        $this->assertNotNull($extension);
+        $configuration = $extension->getConfiguration([], new ContainerBuilder());
+        $this->assertNotNull($configuration);
 
         $processor = new Processor();
         $config = $processor->processConfiguration($configuration, [

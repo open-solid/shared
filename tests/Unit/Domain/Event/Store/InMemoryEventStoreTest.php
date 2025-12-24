@@ -82,6 +82,7 @@ class InMemoryEventStoreTest extends TestCase
         $events = $entity->pullDomainEvents();
 
         $this->assertCount(1, $events);
+        $this->assertInstanceOf(TestSomethingWithValue::class, $events[0]);
         $this->assertSame('first', $events[0]->value);
     }
 

@@ -28,7 +28,8 @@ final readonly class AutoMapGenericTypes
                 continue;
             }
 
-            $propertyType = $reflectionClass->getProperty($fieldName)->getType()?->getName();
+            $type = $reflectionClass->getProperty($fieldName)->getType();
+            $propertyType = $type instanceof \ReflectionNamedType ? $type->getName() : null;
 
             if (!$propertyType || !\class_exists($propertyType)) {
                 continue;

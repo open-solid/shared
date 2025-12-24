@@ -35,6 +35,9 @@ abstract class ModuleExtension extends AbstractExtension
         }
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         if (\is_dir($this->path.'/Infrastructure/Resources/config')) {
@@ -47,6 +50,9 @@ abstract class ModuleExtension extends AbstractExtension
         return 'app_'.parent::getAlias();
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     protected function configureDoctrineMapping(ContainerConfigurator $container, ContainerBuilder $builder, array $config): void
     {
         if (!$builder->hasExtension('doctrine') || !\is_dir($this->path.'/Domain/Model')) {
@@ -72,6 +78,9 @@ abstract class ModuleExtension extends AbstractExtension
         ], true);
     }
 
+    /**
+     * @param array<string, mixed> $config
+     */
     private function configureApiPlatformResources(ContainerConfigurator $container, ContainerBuilder $builder, array $config): void
     {
         if (!$builder->hasExtension('api_platform')) {
@@ -90,11 +99,19 @@ abstract class ModuleExtension extends AbstractExtension
         ], true);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     private function getConfig(ContainerBuilder $builder): array
     {
         /** @var AbstractExtension $extension */
         $extension = $builder->getExtension('opensolid');
+        $configuration = $extension->getConfiguration([], $builder);
 
-        return new Processor()->processConfiguration($extension->getConfiguration([], $builder), $builder->getExtensionConfig('opensolid'));
+        if (null === $configuration) {
+            return [];
+        }
+
+        return new Processor()->processConfiguration($configuration, $builder->getExtensionConfig('opensolid'));
     }
 }

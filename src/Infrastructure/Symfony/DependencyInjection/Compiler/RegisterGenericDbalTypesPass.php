@@ -15,7 +15,9 @@ class RegisterGenericDbalTypesPass implements CompilerPassInterface
 {
     public function __construct(ContainerBuilder $container)
     {
-        $container->registerAttributeForAutoconfiguration(AsGenericType::class, function (ChildDefinition $definition, AsGenericType $attribute, \ReflectionClass $reflector) {
+        $container->registerAttributeForAutoconfiguration(AsGenericType::class, function (ChildDefinition $definition, AsGenericType $attribute, \Reflector $reflector) {
+            \assert($reflector instanceof \ReflectionClass);
+
             if (!$reflector->isSubclassOf(Type::class)) {
                 throw new \LogicException(\sprintf('The class "%s" must extend "%s" to use the #[AsGenericType] attribute.', $reflector->getName(), Type::class));
             }
@@ -42,6 +44,7 @@ class RegisterGenericDbalTypesPass implements CompilerPassInterface
             return;
         }
 
+        /** @var array<string, array{class: string}> $typeDefinition */
         $typeDefinition = $container->getParameter('doctrine.dbal.connection_factory.types');
 
         $autoMapTypes = [];
