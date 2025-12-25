@@ -6,7 +6,7 @@ namespace OpenSolid\Core\Domain\Envelop\Stamp;
 
 use OpenSolid\Bus\Envelope\Stamp\Stamp;
 
-final readonly class TransportStamp extends Stamp
+readonly class TransportStamp extends Stamp
 {
     /**
      * @var list<string>

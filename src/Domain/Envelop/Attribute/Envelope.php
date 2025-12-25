@@ -7,7 +7,7 @@ namespace OpenSolid\Core\Domain\Envelop\Attribute;
 use OpenSolid\Bus\Envelope\Stamp\Stamp;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
-final readonly class Envelope
+readonly class Envelope
 {
     /**
      * @var array<class-string<Stamp>, list<Stamp>>
