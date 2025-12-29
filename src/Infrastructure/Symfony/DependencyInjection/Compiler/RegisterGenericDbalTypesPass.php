@@ -14,7 +14,7 @@ class RegisterGenericDbalTypesPass implements CompilerPassInterface
     public function __construct(ContainerBuilder $container)
     {
         $container->registerForAutoconfiguration(GenericType::class)
-            ->addTag('doctrine.dbal.generic_type');
+            ->addResourceTag('doctrine.dbal.generic_type');
     }
 
     public function process(ContainerBuilder $container): void
