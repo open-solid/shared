@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace OpenSolid\Core\Infrastructure\Symfony\DependencyInjection\Compiler;
 
-use Doctrine\DBAL\Types\Type;
-use OpenSolid\Core\Infrastructure\Persistence\Doctrine\DBAL\Attribute\AsGenericType;
+use OpenSolid\Core\Infrastructure\Persistence\Doctrine\DBAL\GenericType;
 use OpenSolid\Core\Infrastructure\Persistence\Doctrine\ORM\Mapping\AutoMapGenericTypes;
-use Symfony\Component\DependencyInjection\ChildDefinition;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -15,27 +13,8 @@ class RegisterGenericDbalTypesPass implements CompilerPassInterface
 {
     public function __construct(ContainerBuilder $container)
     {
-        $container->registerAttributeForAutoconfiguration(AsGenericType::class, function (ChildDefinition $definition, AsGenericType $attribute, \Reflector $reflector) {
-            \assert($reflector instanceof \ReflectionClass);
-
-            if (!$reflector->isSubclassOf(Type::class)) {
-                throw new \LogicException(\sprintf('The class "%s" must extend "%s" to use the #[AsGenericType] attribute.', $reflector->getName(), Type::class));
-            }
-
-            $methodReturnType = $reflector->getMethod('convertToPHPValue')->getReturnType();
-
-            if (!$methodReturnType instanceof \ReflectionNamedType) {
-                throw new \LogicException(\sprintf('The method "%s::convertToPHPValue()" must have a named return type to use the #[AsGenericType] attribute.', $reflector->getName()));
-            }
-
-            if ($methodReturnType->isBuiltin()) {
-                throw new \LogicException(\sprintf('The method "%s::convertToPHPValue()" must return a class type, got "%s".', $reflector->getName(), $methodReturnType->getName()));
-            }
-
-            $definition->addResourceTag('doctrine.dbal.type', [
-                'super_class' => $methodReturnType->getName(),
-            ]);
-        });
+        $container->registerForAutoconfiguration(GenericType::class)
+            ->addTag('doctrine.dbal.generic_type');
     }
 
     public function process(ContainerBuilder $container): void
@@ -48,15 +27,39 @@ class RegisterGenericDbalTypesPass implements CompilerPassInterface
         $typeDefinition = $container->getParameter('doctrine.dbal.connection_factory.types');
 
         $autoMapTypes = [];
-        foreach ($container->findTaggedResourceIds('doctrine.dbal.type') as $type => $attributes) {
-            $autoMapTypes[] = $superClass = $attributes[0]['super_class'] ?? throw new \LogicException(\sprintf('The "doctrine.dbal.type" tag for "%s" must have a "super_class" attribute.', $type));
+        $types = $container->findTaggedResourceIds('doctrine.dbal.generic_type');
+        foreach ($types as $type => $attributes) {
+            $definition = $container->getDefinition($type);
+
+            /** @var class-string $class */
+            $class = $definition->getClass();
+
+            $reflectorClass = new \ReflectionClass($class);
+
+            if (!$reflectorClass->isSubclassOf(GenericType::class)) {
+                throw new \LogicException(\sprintf('The class "%s" must extend "%s".', $class, GenericType::class));
+            }
+
+            $methodReturnType = $reflectorClass->getMethod('convertToPHPValue')->getReturnType();
+
+            if (!$methodReturnType instanceof \ReflectionNamedType) {
+                throw new \LogicException(\sprintf('The method "%s::convertToPHPValue()" must have a named return type.', $class));
+            }
+
+            $superClass = $methodReturnType->getName();
+
+            if ($methodReturnType->isBuiltin() || !class_exists($superClass)) {
+                throw new \LogicException(\sprintf('The method "%s::convertToPHPValue()" must return a class, got "%s".', $class, $superClass));
+            }
+
+            $autoMapTypes[] = $superClass;
 
             foreach ($container->getDefinitions() as $id => $definition) {
                 if ($definition->isAbstract() || !\is_subclass_of($id, $superClass)) {
                     continue;
                 }
 
-                $typeDefinition[$id] = ['class' => $type];
+                $typeDefinition[$id] = ['class' => $class];
             }
         }
 
