@@ -16,5 +16,15 @@ abstract class GenericType extends Type
      *
      * @return class-string<T>
      */
-    abstract public function getClass(): string;
+    public function getClass(): string
+    {
+        /** @var class-string<T> $class */
+        $class = self::lookupName($this);
+
+        if (!class_exists($class)) {
+            throw new \RuntimeException(sprintf('Class "%s" does not exist.', $class));
+        }
+
+        return $class;
+    }
 }
